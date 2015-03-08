@@ -41,7 +41,6 @@ class AppLogin(TemplateView):
     def get(self, request, *args, **kwargs):
         data = request.GET.get('data',b'')
         data_decoded = urlsafe_b64decode(data).decode('utf-8')
-        print(data_decoded)
         data_dict = loads(data_decoded)
         if len(BookClub.objects.filter(owners_email_address=data_dict['email']))==0:
             result = {'login':'false'}
