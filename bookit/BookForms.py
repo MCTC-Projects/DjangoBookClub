@@ -5,16 +5,17 @@ from bookit.models import Book, BookClub, Review, User
 
 
 class BookClubRegistration(ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput)
     class Meta:
         model = BookClub
-        fields = ['']
+        fields = ('bookclub_name','bookclub_description','owners_first_name','owners_email_address')
 
 
 class UserLogin(ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
     class Meta:
         model = User
-        fields = ['email_address']
+        fields = ('email_address',)
 
 
 

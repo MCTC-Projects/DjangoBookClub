@@ -24,4 +24,9 @@ class Registration(TemplateView):
         form = BookClubRegistration(request.POST)
         if form.is_valid():
             print(form.cleaned_data)
-            return HttpResponseRedirect("instructions/")
+            return HttpResponseRedirect("/instructions/")
+
+
+class Instructions(TemplateView):
+    def get(self, request, *args, **kwargs):
+        return render(request,"instructions.html")
