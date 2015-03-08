@@ -1,24 +1,20 @@
+from django.forms import ModelForm
 from django import forms
+from bookit.models import Book, BookClub, Review, User
 
 
 
-class LoginForm(forms.Form):
-    email_address = forms.EmailField()
-    password = forms.PasswordInput()
+class BookClubRegistration(ModelForm):
+    class Meta:
+        model = BookClub
+        fields = ['']
+
+
+class UserLogin(ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput)
+    class Meta:
+        model = User
+        fields = ['email_address']
 
 
 
-class RegistrationForm(forms.Form):
-    first_name = forms.CharField()
-    BookClub = forms.ChoiceField()
-    email_address = forms.EmailField()
-    password = forms.PasswordInput()
-    password_again = forms.PasswordInput()
-
-
-class NewBookClubForm(forms.Form):
-    bookclubname = forms.CharField()
-    email_address = forms.EmailField()
-    first_name = forms.CharField()
-    password = forms.PasswordInput()
-    password_again = forms.PasswordInput()

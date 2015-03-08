@@ -1,3 +1,5 @@
 from django.contrib import admin
+from bookit.models import Book,BookClub,Review,User
 
-# Register your models here.
+
+admin.site.register([Book,BookClub,Review,User])
