@@ -9,7 +9,7 @@ class BookClub(models.Model):
     bookclub_description = models.TextField()
     owners_first_name = models.CharField(max_length=20)
     owners_email_address = models.EmailField()
-    owners_password = models.CharField(max_length=15)
+    owners_password = models.CharField(max_length=30)
 
     def __str__(self):
         return str(self.bookclub_name)
