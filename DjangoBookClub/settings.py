@@ -20,7 +20,7 @@ BASE_DIR = ''
 SECRET_KEY = '=oj&2y96)h5-9z-c@^3^d8vsnta#cqp3pa@=&f_axt%5)7#1z_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 TEMPLATE_DEBUG = True
 
@@ -83,6 +83,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = 'DjangoBookClub/Static'
+STATIC_ROOT = 'DjangoBookClub/static'
 
 TEMPLATE_DIRS = (os.path.join(BASE_DIR,'bookit/HTML'),)
