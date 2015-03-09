@@ -59,7 +59,7 @@ WSGI_APPLICATION = 'DjangoBookClub.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'HEROKU_POSTGRESQL_BLUE_URL',
     }
 }
