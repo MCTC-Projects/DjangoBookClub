@@ -26,7 +26,7 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = ['mctc-bookclub.herokuapp.com','javaApp']
+ALLOWED_HOSTS = ['*',]
 
 
 # Application definition
