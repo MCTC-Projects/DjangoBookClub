@@ -13,7 +13,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Book',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('id', models.AutoField(primary_key=True, auto_created=True, verbose_name='ID', serialize=False)),
                 ('title', models.CharField(max_length=50)),
                 ('author', models.CharField(max_length=20)),
                 ('isbn', models.IntegerField()),
@@ -26,7 +26,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='BookClub',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('id', models.AutoField(primary_key=True, auto_created=True, verbose_name='ID', serialize=False)),
                 ('bookclub_name', models.CharField(max_length=20)),
                 ('bookclub_description', models.TextField()),
                 ('owners_first_name', models.CharField(max_length=20)),
@@ -40,7 +40,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Review',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('id', models.AutoField(primary_key=True, auto_created=True, verbose_name='ID', serialize=False)),
                 ('review', models.TextField()),
                 ('rating', models.IntegerField()),
                 ('book', models.ForeignKey(to='bookit.Book')),
@@ -52,7 +52,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='User',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('id', models.AutoField(primary_key=True, auto_created=True, verbose_name='ID', serialize=False)),
                 ('first_name', models.CharField(max_length=20)),
                 ('email_address', models.EmailField(max_length=75)),
                 ('password', models.CharField(max_length=15)),
@@ -68,10 +68,14 @@ class Migration(migrations.Migration):
             field=models.ForeignKey(to='bookit.User'),
             preserve_default=True,
         ),
+        migrations.AlterUniqueTogether(
+            name='review',
+            unique_together=set([('book', 'user')]),
+        ),
         migrations.AddField(
             model_name='book',
             name='bookclub',
-            field=models.ForeignKey(to='bookit.BookClub'),
+            field=models.ManyToManyField(to='bookit.BookClub'),
             preserve_default=True,
         ),
     ]
