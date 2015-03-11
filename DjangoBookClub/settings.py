@@ -22,7 +22,7 @@ BASE_DIR = ''
 SECRET_KEY = '=oj&2y96)h5-9z-c@^3^d8vsnta#cqp3pa@=&f_axt%5)7#1z_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 TEMPLATE_DEBUG = True
 

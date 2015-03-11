@@ -37,18 +37,21 @@ class Book(models.Model):
     author = models.CharField(max_length=20)
     isbn = models.IntegerField()
     description = models.TextField()
-    bookclub = models.ForeignKey(BookClub)
+    bookclub = models.ManyToManyField(BookClub)
 
     def __str__(self):
         return str(self.title) + " " +str(self.author)
 
 '''Reviews will only have one book--you can not review multiple books with the same review-- so there is a Many-to-one relationship
-between reviews and books'''
+between reviews and books and a many-to-one relationship between reviews and Users'''
 class Review(models.Model):
     book = models.ForeignKey(Book)
     user = models.ForeignKey(User)
     review = models.TextField()
     rating = models.IntegerField()
+
+    class Meta:
+        unique_together = (('book','user'),)
 
     def __str__(self):
         return str(self.book)+" " + str(self.user)+ " "+ str(self.rating)
