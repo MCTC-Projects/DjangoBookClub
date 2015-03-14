@@ -14,15 +14,6 @@ class BookClub(models.Model):
     def __str__(self):
         return str(self.bookclub_name)
 
-'''A user can be in multiple bookclubs so User has a Many-to-Many relationship with BookClub'''
-class User(models.Model):
-    first_name = models.CharField(max_length=20)
-    email_address = models.EmailField()
-    password = models.CharField(max_length=15)
-    bookclub = models.ManyToManyField(BookClub)
-
-    def __str__(self):
-        return str(self.first_name)+" Email: "+str(self.email_address)
 
 
 
