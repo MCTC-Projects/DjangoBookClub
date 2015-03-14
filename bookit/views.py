@@ -2,17 +2,18 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.template import RequestContext
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.forms import AuthenticationForm
 
 from base64 import urlsafe_b64decode
 from json import loads,dumps
 
 from bookit.BookForms import BookClubRegistration
 from django.http import HttpResponseRedirect,HttpResponse
-from bookit.models import BookClub,User
+from bookit.models import BookClub
 
 class MainLogin(TemplateView):
     def get(self, request, *args, **kwargs):
-        form = User
+        form = AuthenticationForm
         return render(request,'main.html',{'form':form})
 
     def post(self,request, *args, **kwargs):
