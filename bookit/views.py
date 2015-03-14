@@ -19,7 +19,7 @@ class MainLogin(TemplateView):
         if form.is_valid():
             user = User.objects.filter(email_address=form.data['email_address']).filter(password=form.data['password'])
             if len(user)>0:
-                return HttpResponseRedirect("You won.")
+                return HttpResponse("You won.")
             else:
                 return render(request,'main.html', {'form':form})
         else:
