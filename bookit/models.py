@@ -27,7 +27,7 @@ class BookClubMembers(models.Model):
 '''A BookClub will have many books and a book might have many bookclubs so there is also a many-to-many relationship
 between the two'''
 class Book(models.Model):
-    is_current = models.BooleanField()
+    is_current = models.BooleanField(default=False)
     title = models.CharField(max_length=50)
     author = models.CharField(max_length=20)
     isbn = models.IntegerField()
