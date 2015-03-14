@@ -1,31 +1,31 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.template import RequestContext
+from django.contrib.auth import authenticate, login
 
 from base64 import urlsafe_b64decode
 from json import loads,dumps
 
-from bookit.BookForms import BookClubRegistration, UserLogin
+from bookit.BookForms import BookClubRegistration
 from django.http import HttpResponseRedirect,HttpResponse
 from bookit.models import BookClub,User
 
 class MainLogin(TemplateView):
     def get(self, request, *args, **kwargs):
-        form = UserLogin()
+        form = User
         return render(request,'main.html',{'form':form})
 
     def post(self,request, *args, **kwargs):
-        form = UserLogin(request.POST)
-        if form.is_valid():
-            user = User.objects.filter(email_address=form.data['email_address']).filter(password=form.data['password'])
-            if len(user)>0:
-                return HttpResponse("You won.")
-            else:
-                return render(request,'main.html', {'form':form})
+        user_email = request.POST['email']
+        user_password = request.POST['password']
+        user = authenticate(email=user_email,password = user_password)
+        if user is not None:
+            if user.is_active:
+                login(request,user)
+                return HttpResponse("You won!")
+
         else:
-            return render(request, 'main.html',{'form':form})
-
-
+            return HttpResponse("You lose!")
 
 
 

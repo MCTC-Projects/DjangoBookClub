@@ -1,7 +1,6 @@
 from django.forms import ModelForm
 from django import forms
-from bookit.models import Book, BookClub, Review, User
-from django.core.validators import validate_email
+from bookit.models import Book, BookClub, Review
 
 
 class BookClubRegistration(ModelForm):
