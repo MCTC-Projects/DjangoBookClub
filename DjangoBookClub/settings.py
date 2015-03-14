@@ -81,6 +81,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = 'DjangoBookClub/static'
+STATIC_ROOT = os.path.join(BASE_DIR,'static')
 
 TEMPLATE_DIRS = (os.path.join(BASE_DIR,'bookit/HTML'),)
