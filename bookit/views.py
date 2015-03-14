@@ -26,6 +26,9 @@ class MainLogin(TemplateView):
             return render(request, 'main.html',{'form':form})
 
 
+
+
+
 class Registration(TemplateView):
     def get(self,request, *args,**kwargs):
         form = BookClubRegistration()
