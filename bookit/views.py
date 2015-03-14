@@ -23,7 +23,7 @@ class MainLogin(TemplateView):
         if user is not None:
             if user.is_active:
                 login(request,user)
-                bookclub = BookClubMembers.objects.filter(user = user)[0].bookclub
+                bookclub = BookClubMembers.objects.filter(user.equals(user))[0].bookclub
                 return render(request,'bookclub.html',{'bookclub':bookclub})
 
         else:
