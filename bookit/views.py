@@ -23,10 +23,11 @@ class MainLogin(TemplateView):
         if user is not None:
             if user.is_active:
                 login(request,user)
-                return HttpResponse("You won!")
+                return HttpResponseRedirect()
 
         else:
-            return HttpResponse("You lose!")
+            form = AuthenticationForm
+            return render(request,'main.html',{'form':form,'message':"Try again."})
 
 
 
