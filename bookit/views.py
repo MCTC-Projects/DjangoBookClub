@@ -16,7 +16,7 @@ class MainLogin(TemplateView):
 
     def post(self,request, *args, **kwargs):
         form = UserLogin(request.POST)
-        if form.is_valid:
+        if form.is_valid():
             user = User.objects.filter(email_address=form.email_address).filter(password=form.password)
             if len(user)>0:
                 return HttpResponseRedirect("You won.")
