@@ -17,9 +17,9 @@ class MainLogin(TemplateView):
         return render(request,'main.html',{'form':form})
 
     def post(self,request, *args, **kwargs):
-        user_email = request.POST['email']
+        username = request.POST['username']
         user_password = request.POST['password']
-        user = authenticate(email=user_email,password = user_password)
+        user = authenticate(username=username,password = user_password)
         if user is not None:
             if user.is_active:
                 login(request,user)
