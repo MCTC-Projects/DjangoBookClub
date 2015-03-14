@@ -15,9 +15,13 @@ class BookClub(models.Model):
         return str(self.bookclub_name)
 
 
+'''Users can be in Many BookClubs and BookClubs have many Users'''
+class BookClubMembers(models.Model):
+    user = models.ManyToManyField(User)
+    bookclub = models.OneToOneField(BookClub)
 
-
-
+    class Meta:
+        unique_together(('user','bookclub'))
 
 
 
