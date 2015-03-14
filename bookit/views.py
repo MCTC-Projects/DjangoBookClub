@@ -9,12 +9,12 @@ from json import loads,dumps
 
 from bookit.BookForms import BookClubRegistration
 from django.http import HttpResponseRedirect,HttpResponse
-from bookit.models import BookClub
+from bookit.models import BookClub, BookClubMembers
 
 class MainLogin(TemplateView):
     def get(self, request, *args, **kwargs):
         form = AuthenticationForm
-        return render(request,'main.html',{'form':form})
+        return render(request, 'main.html', {'form':form})
 
     def post(self,request, *args, **kwargs):
         username = request.POST['username']
@@ -23,11 +23,12 @@ class MainLogin(TemplateView):
         if user is not None:
             if user.is_active:
                 login(request,user)
-                return HttpResponseRedirect()
+                bookclub = BookClubMembers.objects.filter(user = user).bookclub
+                return render(request,'bookclub.html',{'bookclub':bookclub})
 
         else:
             form = AuthenticationForm
-            return render(request,'main.html',{'form':form,'message':"Try again."})
+            return render(request, 'main.html', {'form':form, 'message':"Try again."})
 
 
 
