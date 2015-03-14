@@ -12,12 +12,6 @@ class BookClubRegistration(ModelForm):
         fields = ('bookclub_name','bookclub_description','owners_first_name','owners_email_address')
 
 
-class UserLogin(ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput)
-    email_address = forms.CharField(validators=[validate_email])
-    class Meta:
-        model = User
-        fields = ['username','password']
 
 
 
