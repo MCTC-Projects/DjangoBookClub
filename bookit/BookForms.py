@@ -17,7 +17,7 @@ class UserLogin(ModelForm):
     email_address = forms.CharField(validators=[validate_email])
     class Meta:
         model = User
-        exclude = ['first_name','bookclub']
+        fields = ['username','password']
 
 
 
