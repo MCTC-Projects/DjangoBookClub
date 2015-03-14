@@ -21,7 +21,7 @@ class BookClubMembers(models.Model):
     bookclub = models.OneToOneField(BookClub)
 
     class Meta:
-        unique_together(('user','bookclub'),)
+        unique_together = (('user','bookclub'),)
 
 
 
