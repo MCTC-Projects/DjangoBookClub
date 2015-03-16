@@ -24,7 +24,7 @@ class MainLogin(TemplateView):
         if user is not None:
             if user.is_active:
                 login(request,user)
-                bookclub = serializers.serialize('json', BookClubMembers.objects.filter(user = user).all())
+                bookclub = serializers.serialize('json', BookClubMembers.objects.filter(user = user).all(),use_natural_foreign_keys=True)
                 return render(request,'bookclub.html',{'bookclub':bookclub})
 
         else:
