@@ -7,9 +7,7 @@ from django.contrib.auth.models import User
 class BookClub(models.Model):
     bookclub_name = models.CharField(max_length=20)
     bookclub_description = models.TextField()
-    owners_first_name = models.CharField(max_length=20)
-    owners_email_address = models.EmailField()
-    owners_password = models.CharField(max_length=30)
+    owner = models.OneToOneField(User)
 
     def __str__(self):
         return str(self.bookclub_name)
@@ -24,7 +22,7 @@ class BookClubMembers(models.Model):
 
 
 
-'''A BookClub will have many books and a book might have many bookclubs so there is also a many-to-many relationship
+'''A BookClub will have many books so there is a one-to-many relationship
 between the two'''
 class Book(models.Model):
     is_current = models.BooleanField(default=False)
@@ -32,7 +30,7 @@ class Book(models.Model):
     author = models.CharField(max_length=20)
     isbn = models.IntegerField()
     description = models.TextField()
-    bookclub = models.ManyToManyField(BookClub)
+    bookclub = models.ForeignKey(BookClub)
 
     def __str__(self):
         return str(self.title) + " " +str(self.author)
