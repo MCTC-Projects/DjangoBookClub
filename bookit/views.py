@@ -3,6 +3,7 @@ from django.views.generic import TemplateView
 from django.template import RequestContext
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
+from django.core import serializers
 
 from base64 import urlsafe_b64decode
 from json import loads,dumps
@@ -19,11 +20,11 @@ class MainLogin(TemplateView):
     def post(self,request, *args, **kwargs):
         username = request.POST['username']
         user_password = request.POST['password']
-        user = authenticate(username=username,password = user_password)
+        user = authenticate(username=username, password = user_password)
         if user is not None:
             if user.is_active:
                 login(request,user)
-                bookclub = BookClubMembers.objects.filter(user = user).all()
+                bookclub = serializers.serialize('json', BookClubMembers.objects.filter(user = user).all())
                 return render(request,'bookclub.html',{'bookclub':bookclub})
 
         else:
