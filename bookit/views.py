@@ -24,7 +24,7 @@ class MainLogin(TemplateView):
             if user.is_active:
                 login(request,user)
                 bookclub = BookClubMembers.objects.filter(user = user)[0].bookclub
-                return render(request,'bookclub.html',{'bookclub':bookclub.})
+                return render(request,'bookclub.html',{'bookclub':bookclub})
 
         else:
             form = AuthenticationForm
