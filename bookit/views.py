@@ -55,11 +55,11 @@ class AppLogin(TemplateView):
         data = str.encode(str(data))
         data_decoded = urlsafe_b64decode(data).decode('utf-8')
         data_dict = loads(data_decoded)
-        if len(BookClub.objects.filter(owners_email_address=data_dict['email']))==0:
-            result = {'login':'false'}
+        user = authenticate(data_dict['email'],data_dict['password'])
+        if user is not None and len(BookClub.objects.filter(user=user).all())>0:
+            result = {'login' : 'true'}
         else:
-            if len(BookClub.objects.filter(owners_email_address=data_dict['email']).filter(owners_password=data_dict['password']))>0:
-                result = {'login':'true'}
-            else:
-                result = {'login':'false'}
+            result = {'login' : 'false'}
+
         return HttpResponse(dumps(result))
+
