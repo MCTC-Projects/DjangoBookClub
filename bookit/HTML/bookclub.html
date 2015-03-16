@@ -7,8 +7,8 @@
 <body>
 
 
-    {% for bc in bookclub.bookclub %}
-       <h1> {{ bc.bookclub_name }}</h1>
+    {% for bc in bookclub %}
+       <h1> {{ bc.bookclub.bookclub_name }}</h1>
     {% endfor %}
 </body>
 </html>
