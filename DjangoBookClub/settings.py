@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'registration',
     'bookit',
 )
 
@@ -84,3 +85,14 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR,'static')
 
 TEMPLATE_DIRS = (os.path.join(BASE_DIR,'bookit/HTML'),)
+
+
+
+
+#registration specific
+
+REGISTRATION_OPEN = True
+ACCOUNT_ACTIVATION_DAYS = 7
+REGISTRATION_AUTO_LOGIN = True
+LOGIN_REDIRECT_URL = '/bookclub/'
+LOGIN_URL = '/'
