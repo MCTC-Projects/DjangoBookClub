@@ -78,9 +78,9 @@ class BookDump(TemplateView):
             bookclub = BookClub.objects.filter(owner=user).first()
             books = Book.objects.filter(bookclub = bookclub)
             books = serializers.serialize('json',books)
-            results = {'books':books}
+            results = books;
         else:
-            results = {'books':[]}
+            results = []
         return HttpResponse(dumps(results))
 
     @method_decorator(csrf_exempt)
