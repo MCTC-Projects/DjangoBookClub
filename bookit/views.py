@@ -77,8 +77,8 @@ class BookDump(TemplateView):
         if user is not None:
             bookclub = BookClub.objects.filter(owner=user).first()
             books = Book.objects.filter(bookclub = bookclub)
-            books = serializers.serialize('json',books)
-            results = books;
+            books = serializers.serialize('python',books)
+            results = books
         else:
             results = []
         return HttpResponse(dumps(results))
