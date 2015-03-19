@@ -70,12 +70,12 @@ class AppLogin(TemplateView):
 class BookDump(TemplateView):
     def get(self, request, *args, **kwargs):
         data = request.GET.get('data',b'224dfasdf')
-        data = str.encode(str(data))
+        data = data.encode('utf-8')
         data_decoded = urlsafe_b64decode(data).decode('utf-8')
         data_dict = loads(data_decoded)
         user = authenticate(username=str(data_dict['email']),password=str(data_dict['password']))
         if user is not None:
-            bookclub = BookClub.objects.filter(user=user).first()
+            bookclub = BookClub.objects.filter(owner=user).first()
             books = Book.objects.filter(bookclub = bookclub)
             books = serializers.serialize('json',books)
             result = {'books':books}
