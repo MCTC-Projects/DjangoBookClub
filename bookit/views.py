@@ -58,7 +58,7 @@ class AppLogin(TemplateView):
         data_dict = loads(data_decoded)
 
         user = authenticate(username=str(data_dict['email']),password=str(data_dict['password']))
-        if user is not None:
+        if user is not None and len(BookClub.objects.filter(owner=user).all())>0:
             result = {"login":True}
         else:
             result = {"login":False}
