@@ -94,6 +94,6 @@ class BookDump(TemplateView):
             books = loads(books)
             for book in books:
                 Book(author=book['author'],title=book['title']).save()
-            return HttpResponse(dumps({'books':'true'}))
+            return HttpResponse(dumps({'login':'true'}))
         else:
-            return HttpResponse(dumps({'books':'false'}))
+            return HttpResponse(dumps({'login':'false'}))
