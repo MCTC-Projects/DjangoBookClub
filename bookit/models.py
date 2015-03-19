@@ -9,6 +9,9 @@ class BookClub(models.Model):
     bookclub_description = models.TextField()
     owner = models.OneToOneField(User)
 
+    def natural_key(self):
+        return (self.bookclub_name,)
+
     def __str__(self):
         return str(self.bookclub_name)
 
