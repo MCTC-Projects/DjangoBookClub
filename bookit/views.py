@@ -42,6 +42,7 @@ class Registration(TemplateView):
     def post(self,request, *args,**kwargs):
         form = BookClubRegistration(request.POST)
         if form.is_valid():
+            form.save(commit=True)
             return HttpResponseRedirect("/instructions/")
         else:
             return render(request,"registration.html",{'form':form}, context_instance=RequestContext(request))
