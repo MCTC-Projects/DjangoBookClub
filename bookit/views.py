@@ -4,8 +4,7 @@ from django.template import RequestContext
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 from django.core import serializers
-from django.views.decorators.csrf import csrf_exempt
-from django.utils.decorators import method_decorator
+
 
 from base64 import urlsafe_b64decode
 from json import loads,dumps
@@ -83,7 +82,7 @@ class BookDump(TemplateView):
             results = []
         return HttpResponse(dumps(results))
 
-    @method_decorator(csrf_exempt)
+
     def post(self, request, *args, **kwargs):
         data = str(request.POST.get('data','eyJlbWFpbCI6Iml'))
         data = data.encode('utf-8')
