@@ -31,7 +31,7 @@ class Book(models.Model):
     is_current = models.BooleanField(default=False)
     title = models.CharField(max_length=50)
     author = models.CharField(max_length=20)
-    isbn = models.IntegerField(null=True)
+    isbn = models.CharField(max_length = 13)
     description = models.TextField(blank=True)
     bookclub = models.ForeignKey(BookClub)
 
