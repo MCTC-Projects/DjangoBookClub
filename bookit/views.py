@@ -58,8 +58,8 @@ class AppLogin(TemplateView):
         data_dict = loads(data_decoded)
 
         user = authenticate(username=str(data_dict['email']),password=str(data_dict['password']))
-        user is not None
-        return HttpResponse(dumps({"login":"true"}))
+
+        return HttpResponse(dumps({"login":user is not None}))
 
 
 class BookDump(TemplateView):
