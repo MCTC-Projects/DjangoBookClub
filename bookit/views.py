@@ -52,15 +52,16 @@ class Instructions(TemplateView):
 
 class AppLogin(TemplateView):
     def get(self, request, *args, **kwargs):
-        data = request.GET.get('datar',b'eyJlbWFpbCI6ImludGVybmV0cmFuZG9tIiwicGFzc3dvcmQi0iJwYXNzd29yZCJ9')
+        data = request.GET.get('data',b'eyJlbWFpbCI6Iml')
         data = str.encode(data)
         data_decoded = urlsafe_b64decode(data).decode('utf-8')
         data_dict = loads(data_decoded)
-        user = authenticate(username=data_dict['email'],password=data_dict['password'])
+
+        user = authenticate(username=str(data_dict['email']),password=str(data_dict['password']))
         if user is not None and len(BookClub.objects.filter(owner=user).all())>0:
-            result = {'login' : 'true'}
+            result = {"login" : "true"}
         else:
-            result = {'login' : 'false'}
+            result = {"login" : "false"}
 
         return HttpResponse(dumps(result))
 
