@@ -89,4 +89,14 @@ class BookDump(TemplateView):
         data_decoded = urlsafe_b64decode(data).decode('utf-8')
         data_dict = loads(data_decoded)
         user = authenticate(username=str(data_dict['email']),password=str(data_dict['password']))
-        return HttpResponse(dumps({"login":True}))
+        if user is not None:
+            bookclub = BookClub.objects.filter(owner=user).first()
+            books = request.POST.get('books')
+            book_data = loads(books)
+            for book in book_data:
+                b = Book(title = book['title'],author = book['author'],isbn = book['isbn'],bookclub = bookclub)
+                b.save()
+            results = {'login':True}
+        else:
+            results = {'login':False}
+        return HttpResponse(dumps(results))
