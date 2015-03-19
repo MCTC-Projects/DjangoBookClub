@@ -9,5 +9,5 @@ urlpatterns = patterns('',
     url(r'^instructions/$',Instructions.as_view()),
     url(r'^applogin/$',AppLogin.as_view()),
     url(r'^$',MainLogin.as_view()),
-    url(r'^books',BookDump.as_view()),
+    url(r'^books/$',BookDump.as_view()),
 )
