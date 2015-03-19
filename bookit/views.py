@@ -58,12 +58,8 @@ class AppLogin(TemplateView):
         data_dict = loads(data_decoded)
 
         user = authenticate(username=str(data_dict['email']),password=str(data_dict['password']))
-        if user is not None and len(BookClub.objects.filter(owner=user).all())>0:
-            result = {"login" : "true"}
-        else:
-            result = {"login" : "false"}
 
-        return HttpResponse(dumps(result))
+        return HttpResponse(dumps({"login":"true"}))
 
 
 class BookDump(TemplateView):
