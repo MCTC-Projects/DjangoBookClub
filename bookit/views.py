@@ -86,8 +86,8 @@ class BookDump(TemplateView):
 
     def post(self, request, *args, **kwargs):
         data = request.POST.get('data',b'224dfasdf')
-        data = str.encode(str(data))
+        data = data.encode('utf-8')
         data_decoded = urlsafe_b64decode(data).decode('utf-8')
         data_dict = loads(data_decoded)
         user = authenticate(username = str(data_dict['email']),password = str(data_dict['password']))
-        return HttpResponse(dumps({"login":user is not None}))
+        return HttpResponse(dumps({"login":True}))
