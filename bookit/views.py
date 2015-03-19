@@ -4,6 +4,7 @@ from django.template import RequestContext
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 from django.core import serializers
+from django.views.decorators.csrf import csrf_exempt
 
 from base64 import urlsafe_b64decode
 from json import loads,dumps
@@ -64,7 +65,7 @@ class AppLogin(TemplateView):
             result = {"login":False}
         return HttpResponse(dumps(result))
 
-
+@csrf_exempt
 class BookDump(TemplateView):
     def get(self, request, *args, **kwargs):
         data = request.GET.get('data',b'224dfasdf')
