@@ -52,8 +52,8 @@ class Instructions(TemplateView):
 
 class AppLogin(TemplateView):
     def get(self, request, *args, **kwargs):
-        data = request.GET.get('data','eyJlbWFpbCI6Iml')
-        data = bytes(data,'utf-8')
+        data = str(request.GET.get('data','eyJlbWFpbCI6Iml'))
+        data = data.encode('utf-8')
         data_decoded = urlsafe_b64decode(data).decode('utf-8')
         data_dict = loads(data_decoded)
 
