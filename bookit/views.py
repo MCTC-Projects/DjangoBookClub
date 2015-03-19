@@ -10,7 +10,7 @@ from json import loads,dumps
 
 from bookit.BookForms import BookClubRegistration
 from django.http import HttpResponseRedirect,HttpResponse
-from bookit.models import BookClub, BookClubMembers
+from bookit.models import BookClub, BookClubMembers, Book
 
 class MainLogin(TemplateView):
     def get(self, request, *args, **kwargs):
@@ -64,3 +64,36 @@ class AppLogin(TemplateView):
 
         return HttpResponse(dumps(result))
 
+
+class BookDump(TemplateView):
+    def get(self, request, *args, **kwargs):
+        data = request.GET.get('data',b'224dfasdf')
+        data = str.encode(str(data))
+        data_decoded = urlsafe_b64decode(data).decode('utf-8')
+        data_dict = loads(data_decoded)
+        user = authenticate(data_dict['email'],data_dict['password'])
+        if user is not None:
+            bookclub = BookClub.objects.filter(user=user).first()
+            books = Book.objects.filter(bookclub = bookclub)
+            books = serializers.serialize('json',books)
+            result = {'books':books}
+
+        else:
+            result = {'books':'404'}
+        return HttpResponse(dumps(result))
+
+
+    def post(self, request, *args, **kwargs):
+        data = request.POST.get('data',b'224dfasdf')
+        data = str.encode(str(data))
+        data_decoded = urlsafe_b64decode(data).decode('utf-8')
+        data_dict = loads(data_decoded)
+        user = authenticate(data_dict['email'],data_dict['password'])
+        if user is not None:
+            books = request.POST.get('books')
+            books = loads(books)
+            for book in books:
+                Book(author=book['author'],title=book['title']).save()
+            return HttpResponse(dumps({'books':'true'}))
+        else:
+            return HttpResponse(dumps({'books':'false'}))

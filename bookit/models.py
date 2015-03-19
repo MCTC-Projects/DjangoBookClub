@@ -31,8 +31,8 @@ class Book(models.Model):
     is_current = models.BooleanField(default=False)
     title = models.CharField(max_length=50)
     author = models.CharField(max_length=20)
-    isbn = models.IntegerField()
-    description = models.TextField()
+    isbn = models.IntegerField(null=True)
+    description = models.TextField(blank=True)
     bookclub = models.ForeignKey(BookClub)
 
     def __str__(self):
