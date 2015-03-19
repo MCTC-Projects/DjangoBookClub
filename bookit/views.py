@@ -78,11 +78,9 @@ class BookDump(TemplateView):
             bookclub = BookClub.objects.filter(owner=user).first()
             books = Book.objects.filter(bookclub = bookclub)
             books = serializers.serialize('json',books)
-            result = {'books':books}
-
         else:
-            result = {'books':'404'}
-        return HttpResponse(dumps(result))
+            books = []
+        return HttpResponse(dumps(books))
 
     @method_decorator(csrf_exempt)
     def post(self, request, *args, **kwargs):
