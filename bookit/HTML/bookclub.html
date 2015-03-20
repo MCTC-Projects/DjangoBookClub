@@ -18,11 +18,14 @@
 </head>
 <body ng-app="BookClubApp" ng-controller="BooksController">
     <div class="container">
-        <div ng-repeat="book in books_data">
-            <div class="bookbox">
-                <h1 ng-bind="book.fields.title"></h1>
-                <h3 ng-bind="book.fields.author"></h3>
-                <p ng-bind="book.fields.description"></p>
+        <div ng-repeat="bookclub in data">
+            <h1 ng-bind="bookclub.fields.bookclub"></h1>
+            <div ng-repeat="book in books_data">
+                <div class="bookbox">
+                    <h2 ng-bind="book.fields.title"></h2>
+                    <h3 ng-bind="book.fields.author"></h3>
+                    <p ng-bind="book.fields.description"></p>
+                </div>
             </div>
         </div>
     </div>
