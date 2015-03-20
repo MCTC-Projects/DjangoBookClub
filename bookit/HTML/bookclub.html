@@ -16,8 +16,8 @@
 <body ng-app="BookClubApp" ng-controller="BooksController">
     <div class="container">
         <div ng-repeat="book in books_data">
-            <p ng-bind="book.fields"></p>
-            <p ng-bind="1+2"></p>
+            <p ng-bind="book.fields.title"></p>
+            <p ng-bind="book.fields.author"></p>
         </div>
     </div>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
