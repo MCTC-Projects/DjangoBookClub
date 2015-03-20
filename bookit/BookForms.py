@@ -9,7 +9,6 @@ class BookClubRegistration(UserCreationForm):
     bookclub_description = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control'}))
 
     class Meta:
-        model = BookClub
         labels = {'username': ('email',),
                   }
 
