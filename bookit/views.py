@@ -26,7 +26,8 @@ class MainLogin(TemplateView):
             if user.is_active:
                 login(request,user)
                 bookclub = serializers.serialize('json', BookClubMembers.objects.filter(user = user).all(),use_natural_foreign_keys=True,fields=('bookclub',))
-                return render(request,'bookclub.html',{'bookclub':bookclub})
+                books = serializers.serialize('json',Book.objects.filter(bookclub=bookclub).all(),fields=('title','author','description'))
+                return render(request,'bookclub.html',{'bookclub':bookclub,'books':books})
 
         else:
             form = AuthenticationForm
