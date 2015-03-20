@@ -30,7 +30,7 @@ class MainLogin(TemplateView):
                 books=''
                 for bc in bookclub:
                     books += serializers.serialize('json',Book.objects.filter(bookclub=bc).all(),fields=('title','author','description'))
-                return render(request,'bookclub.html',{'bookclub':bookclub,'books':books})
+                return render(request,'bookclub.html',{'bookclub':bookclub_json,'books':books})
 
         else:
             form = AuthenticationForm
