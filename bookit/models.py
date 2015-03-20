@@ -3,6 +3,15 @@ from django.contrib.auth.models import User
 
 
 
+'''This model is for when the email address has been sent in for a member but they haven't fully registered'''
+class PartialMember(models.Model):
+    email = models.EmailField()
+
+    def __str__(self):
+        return self.email
+
+
+
 '''BookClub is the main table. Everything is based off of what bookclub you are a part of'''
 class BookClub(models.Model):
     bookclub_name = models.CharField(max_length=20)
