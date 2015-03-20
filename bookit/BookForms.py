@@ -10,7 +10,7 @@ class BookClubRegistration(UserCreationForm):
 
     class Meta:
         model = BookClub
-        labels = {'username': _('email'),
+        labels = {'username': ('email',),
                   }
 
 
