@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <title></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <style>
+        .bookbox {border:3px solid blanchedalmond; border-radius: 10px;}
+    </style>
     <script>
         angular.module('BookClubApp',[]).controller('BooksController',['$scope',function($scope){
             $scope.data = {{ bookclub|safe }};
@@ -16,8 +19,11 @@
 <body ng-app="BookClubApp" ng-controller="BooksController">
     <div class="container">
         <div ng-repeat="book in books_data">
-            <p ng-bind="book.fields.title"></p>
-            <p ng-bind="book.fields.author"></p>
+            <div class="bookbox">
+                <h1 ng-bind="book.fields.title"></h1>
+                <h3 ng-bind="book.fields.author"></h3>
+                <p ng-bind="book.fields.description"></p>
+            </div>
         </div>
     </div>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
