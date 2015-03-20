@@ -6,7 +6,7 @@
     <title></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <script>
-        angular.modules('BookClubApp',[]).controller('BooksController',['$scope',function($scope){
+        angular.module('BookClubApp',[]).controller('BooksController',['$scope',function($scope){
             $scope.data = {{ bookclub|safe }};
         $scope.books_data = {{ books|safe }};
         }]);
