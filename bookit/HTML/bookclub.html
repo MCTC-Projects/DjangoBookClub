@@ -6,15 +6,18 @@
     <title></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <script>
-        var data = {{ bookclub|safe }};
-        var books_data = {{ books|safe }};
+        angular.moduls('BookClubApp',[]).controller('BooksController',['$scope',function($scope){
+            $scope.data = {{ bookclub|safe }};
+        $scope.books_data = {{ books|safe }};
+        }]);
+
     </script>
 </head>
-<body>
+<body ng-app="BookClubApp" ng-controller="BooksController">
     <div class="container">
         <div ng-repeat="book in books_data">
-            <p ng-bind-html="book.fields"></p>
-            <p ng-bind-html="1+2"></p>
+            <p ng-bind="book.fields"></p>
+            <p ng-bind="1+2"></p>
         </div>
     </div>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
