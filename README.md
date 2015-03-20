@@ -15,3 +15,8 @@ Functionality that is available:
     One such normal bookclub user is "somebodyelse" with "password" as the password. 
     Checkout /registration/ page where a new bookclub can be made
     
+    
+    
+Something that is fun is using the WebInterface class and postBooks to post books to the MCTC-Bookclub with 
+owner "internetrandom" and password "password". When "somebodyelse" logs in with "password" for the password
+he/she will find a new book posted to the page.
