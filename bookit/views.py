@@ -29,7 +29,7 @@ class MainLogin(TemplateView):
                 bookclub_json = serializers.serialize('json',bookclub ,use_natural_foreign_keys=True,fields=('bookclub',))
                 books=''
                 for bc in bookclub:
-                    books += serializers.serialize('json',Book.objects.filter(bookclub=bc).all(),fields=('title','author','description'))
+                    books += serializers.serialize('json',Book.objects.filter(bookclub=bc).all(),fields=('title','author','description','bookclub'),use_natural_foreign_keys=True)
                 return render(request,'bookclub.html',{'bookclub':bookclub_json,'books':books})
 
         else:
